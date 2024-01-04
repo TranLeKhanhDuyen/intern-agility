@@ -1,9 +1,9 @@
-const getCurrentDate = () => {
+const getCurrentDate = (): string => {
   const date = new Date();
   return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 };
 
-const getDueDate = () => {
+const getDueDate = (): string => {
   const currentDate = new Date();
   const dueDate = new Date(currentDate.getTime() + 10 * 24 * 60 * 60 * 1000);
   return `${
@@ -11,7 +11,12 @@ const getDueDate = () => {
   }/${dueDate.getDate()}/${dueDate.getFullYear()}`;
 };
 
-const diffTime = (date, method = Math.floor, adverb = 'ago', unit = 'day') => {
+const diffTime = (
+  date: string | number | Date,
+  method: (value: number) => number = Math.floor,
+  adverb: string = 'ago',
+  unit: string = 'day'
+): string => {
   const convertDate = new Date(date);
   const unitMillis = {
     day: 1000 * 60 * 60 * 24,
@@ -19,7 +24,9 @@ const diffTime = (date, method = Math.floor, adverb = 'ago', unit = 'day') => {
     minute: 1000 * 60,
     second: 1000
   };
-  const diff = method(Math.abs(convertDate - Date.now()) / unitMillis[unit]);
+  const diff = method(
+    Math.abs(convertDate.getTime() - Date.now()) / unitMillis[unit]
+  );
 
   switch (diff) {
     case 0:
@@ -33,7 +40,7 @@ const diffTime = (date, method = Math.floor, adverb = 'ago', unit = 'day') => {
   }
 };
 
-const convertDateInput = (dateStr) => {
+const convertDateInput = (dateStr: string): string => {
   const [month, day, year] = dateStr.split('/');
   const date = new Date(+year, +month - 1, +day + 1);
   const [dateValue] = date.toISOString().split('T');
@@ -41,13 +48,13 @@ const convertDateInput = (dateStr) => {
   return dateValue;
 };
 
-const formatDate = (date) => {
+const formatDate = (date: string): string => {
   const [year, month, day] = date.split('-');
 
   return [month, day, year].join('/');
 };
 
-const timeAgo = (timeStamp) => {
+const timeAgo = (timeStamp: number): string => {
   const diffInMinutes = Math.floor((Date.now() - timeStamp) / (1000 * 60));
 
   switch (true) {

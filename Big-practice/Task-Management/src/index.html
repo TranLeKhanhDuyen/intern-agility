@@ -1,73 +1,63 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/main.css" />
-    <title>Task Management</title>
-    <link rel="icon" href="./assets/images/logo.svg" type="image/x-icon" />
-  </head>
 
-  <body>
-    <header class="header-container">
-      <a href="#" class="logo">
-        <img src="./assets/images/logo.svg" alt="logo" class="logo-img" />
-        <h1 class="logo-title text-xl">task management</h1>
-      </a>
-      <div class="header-content">
-        <form class="search-container">
-          <img
-            class="search-icon"
-            src="./assets/icons/search.png"
-            alt="search icon"
-          />
-          <input
-            class="search-input text-lg"
-            type="text"
-            placeholder="Search for tasks"
-          />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./styles/main.css" />
+  <title>Task Management</title>
+  <link rel="icon" href="./assets/images/logo.svg" type="image/x-icon" />
+</head>
+
+<body>
+  <header class="header-container">
+    <a href="#" class="logo">
+      <img src="./assets/images/logo.svg" alt="logo" class="logo-img" />
+      <h1 class="logo-title text-xl">task management</h1>
+    </a>
+    <div class="header-content">
+      <form class="search-container">
+        <img class="search-icon" src="./assets/icons/search.png" alt="search icon" />
+        <input class="search-input text-lg" type="text" placeholder="Search for tasks" />
+      </form>
+      <figure class="user">
+        <img class="user-avatar" src="./assets/images/user.svg" alt="avatar" />
+        <p class="user-name">Sara M.</p>
+      </figure>
+    </div>
+  </header>
+
+  <div class="tasks-container">
+    <div class="overlay"></div>
+    <div class="task-board status-todo" id="js-todo">
+      <h2 class="title task-status todo">todo</h2>
+      <div class="task-input-container">
+        <form action="#" method="get" class="add-task">
+          <input type="text" class="task-input text-lg" />
+          <p>Enter to create a new task</p>
         </form>
-        <figure class="user">
-          <img
-            class="user-avatar"
-            src="./assets/images/user.svg"
-            alt="avatar"
-          />
-          <p class="user-name">Sara M.</p>
-        </figure>
-      </div>
-    </header>
-
-    <div class="tasks-container">
-      <div class="overlay"></div>
-      <div class="task-board status-todo" id="js-todo">
-        <h2 class="title task-status todo">todo</h2>
-        <div class="task-input-container">
-          <form action="#" method="get" class="add-task">
-            <input type="text" class="task-input text-lg" />
-            <p>Enter to create a new task</p>
-          </form>
-          <ul class="task-list" id="todo"></ul>
-        </div>
-      </div>
-
-      <div class="task-board status-inprogress" id="js-inprogress">
-        <h2 class="title task-status inprogress">in progress</h2>
-        <ul class="task-list" id="progress"></ul>
-      </div>
-
-      <div class="task-board status-done" id="js-done">
-        <h2 class="title task-status done">done</h2>
-        <ul class="task-list" id="done"></ul>
-      </div>
-
-      <div class="task-board status-archived" id="js-archived">
-        <h2 class="title task-status archived">archived</h2>
-        <ul class="task-list" id="archived"></ul>
+        <ul class="task-list" id="todo"></ul>
       </div>
     </div>
-    <div class="detail-container"></div>
 
-    <script type="module" src="./js/app.js"></script>
-  </body>
+    <div class="task-board status-inprogress" id="js-inprogress">
+      <h2 class="title task-status inprogress">in progress</h2>
+      <ul class="task-list" id="progress"></ul>
+    </div>
+
+    <div class="task-board status-done" id="js-done">
+      <h2 class="title task-status done">done</h2>
+      <ul class="task-list" id="done"></ul>
+    </div>
+
+    <div class="task-board status-archived" id="js-archived">
+      <h2 class="title task-status archived">archived</h2>
+      <ul class="task-list" id="archived"></ul>
+    </div>
+  </div>
+  <div class="detail-container"></div>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+
 </html>

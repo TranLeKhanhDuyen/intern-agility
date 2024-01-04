@@ -2,12 +2,20 @@ import { ERROR_MESSAGE, SUCCESS_MESSAGE } from '../constants/message';
 import { API_URL } from '../constants/url';
 import APIHelper from './helper';
 
+interface ApiRespone {
+  status: number;
+  message: string;
+  data: any;
+}
+
 export default class API {
-  constructor(apiPath = '/tasks') {
+  private apiPath: string;
+
+  constructor(apiPath: string = '/tasks') {
     this.apiPath = apiPath;
   }
 
-  async addTask(taskName) {
+  async addTask(taskName: any): Promise<ApiRespone> {
     try {
       const url = `${API_URL}${this.apiPath}`;
       const { response, result } = await APIHelper.createRequest(
@@ -17,7 +25,7 @@ export default class API {
       );
 
       return {
-        status: response.status,
+        status: response?.status || 500,
         message: SUCCESS_MESSAGE.ADD_SUCCESS,
         data: result
       };
@@ -33,10 +41,10 @@ export default class API {
   async getTask() {
     try {
       const url = `${API_URL}${this.apiPath}`;
-      const { response, result } = await APIHelper.createRequest(url, 'GET');
+      const { response, result } = await APIHelper.createRequest(url, 'GET', null);
 
       return {
-        status: response.status,
+        status: response?.status || 500,
         message: SUCCESS_MESSAGE.GET_SUCCESS,
         data: result
       };

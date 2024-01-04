@@ -18,7 +18,7 @@ export default class TaskListView {
     this.listDone = document.querySelector('#done');
     this.listArchived = document.querySelector('#archived');
 
-    window.addEventListener('offline', this.handleOfflineStatus.bind(this));
+    window.addEventListener('offline', () => this.handleOfflineStatus());
   }
 
   handleOfflineStatus() {
@@ -62,6 +62,9 @@ export default class TaskListView {
     this.formAddTask.addEventListener('keydown', async (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
+
+        if (!navigator.onLine) return alert(ERROR_MESSAGE.INTERNET_ERROR);
+
         const newTaskName = this.taskInput.value.trim();
 
         if (!newTaskName) return alert(ERROR_MESSAGE.TASK_EMPTY);
@@ -130,6 +133,9 @@ export default class TaskListView {
 
   dragDrop = async (e, handler) => {
     e.preventDefault();
+
+    if (!navigator.onLine) return alert(ERROR_MESSAGE.INTERNET_ERROR);
+
     const taskId = e.dataTransfer.getData('text/plain');
     const draggedTask = document.querySelector(`[data-id="${taskId}"]`);
     const targetBoard = e.target.closest('.task-board');
@@ -151,7 +157,10 @@ export default class TaskListView {
     this.taskList.forEach((taskList) => {
       taskList.addEventListener('click', async (e) => {
         const deleteButton = e.target.closest('.delete');
+
         if (!deleteButton) return;
+
+        if (!navigator.onLine) return alert(ERROR_MESSAGE.INTERNET_ERROR);
 
         const taskItem = this.getTaskItem(deleteButton);
 
@@ -210,6 +219,8 @@ export default class TaskListView {
         if (e.target.closest('.delete')) return;
 
         if (!taskItem) return;
+
+        if (!navigator.onLine) return alert(ERROR_MESSAGE.INTERNET_ERROR);
 
         const taskId = taskItem.dataset.id;
         const selectedTask = await handleFind(taskId);

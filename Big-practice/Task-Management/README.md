@@ -1,4 +1,4 @@
-# EXERCISE 3 - JAVASCRIPT
+# BIG PRACTICE - JAVASCRIPT 
 
 ### OVERVIEW
 
@@ -65,13 +65,19 @@ cd Big-practice/Task-Management
 npm install
 ```
 
-- Step 04: Install json server:
+- Step 04: Install prettier, husky, lint-staged:
+
+```
+npm install --save-dev prettier husky lint-staged 
+```
+
+- Step 05: Install json server:
 
 ```
 npm install -g json-server
 ```
 
-- Step 05: Install json server:
+- Step 05: Split terminal and run json server:
 
 ```
 npm run server
@@ -83,16 +89,3 @@ npm run server
 npm start
 ```
 
-### STEPS SETUP PRETTIER, ESLINT and HUSKY
-
-- Step 01: Setup Prettier
-
-```
-npm install --save-dev --save-exact prettier
-```
-
-- Step 02: Setup Husky and Lint-staged
-
-```
-npm install --save-dev husky lint-staged
-```

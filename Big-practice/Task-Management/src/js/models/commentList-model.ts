@@ -1,17 +1,15 @@
 import API from '../services/comment';
-import CommentModel from '../models/comment-model';
+import createCommentModel from './comment-model';
 
 export default class CommentListModel {
+  private apiComment: API;
+
   constructor() {
     this.apiComment = new API();
   }
 
-  showError(errorMessage) {
-    console.error(errorMessage);
-  }
-
-  async addComment(content, taskId) {
-    const comment = CommentModel(content, taskId);
+  async addComment(content: string, taskId: string): Promise<any> {
+    const comment = createCommentModel(content, taskId);
 
     const apiResponse = await this.apiComment.addComment(comment);
 
@@ -19,7 +17,7 @@ export default class CommentListModel {
     return apiResponse.data;
   }
 
-  async getComment(commentId) {
+  async getComment(commentId: string): Promise<any> {
     // Call the API to get task detail by ID
     const apiResponse = await this.apiComment.getComment(commentId);
 
@@ -27,7 +25,7 @@ export default class CommentListModel {
     return apiResponse.data;
   }
 
-  async deleteComment(commentId) {
+  async deleteComment(commentId: string): Promise<number | undefined> {
     const { status } = await this.apiComment.deleteComment(commentId);
 
     if (status !== 200) return;

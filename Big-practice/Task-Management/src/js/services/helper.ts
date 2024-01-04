@@ -1,9 +1,9 @@
 export default class APIHelper {
   static async createRequest(
-    url,
-    method,
-    data,
-    contentType = 'application/json'
+    url: string,
+    method: string,
+    data: any, // Kiểm tra kiểu dữ liệu của tham số 'data'
+    contentType: string = 'application/json'
   ) {
     try {
       const response = await fetch(url, {

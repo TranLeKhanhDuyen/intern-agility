@@ -1,4 +1,4 @@
-const showSuccessMessage = (message) => {
+const showSuccessMessage = (message: string): void => {
   const successMessage = document.createElement('div');
   successMessage.className = 'success-message';
   successMessage.textContent = message;
