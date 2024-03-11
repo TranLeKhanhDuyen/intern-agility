@@ -1,6 +1,15 @@
 import { ChangeEvent, useState } from 'react';
 import './Login.css';
 import handleLoginAPi from '../../services/userService';
+import { Dispatch } from 'redux';
+import { userLoginSuccess } from '@src/stores/actions/userAction';
+import { connect } from 'react-redux';
+// import { push } from 'connected-react-router';
+import * as actions from '../../stores/actions'
+
+interface ILoginProps {
+  userLoginSuccess: (userInfo: string) => void;
+}
 
 interface ILoginState {
   username: string;
@@ -9,7 +18,8 @@ interface ILoginState {
   errMessage: string,
 }
 
-const Login = () => {
+
+const Login: React.FC<ILoginProps> = (props) => {
   const [state, setState] = useState<ILoginState>({
     username: '',
     password: '',
@@ -49,6 +59,8 @@ const Login = () => {
         });
       }
       if (data && data.errCode === 0) {
+        props.userLoginSuccess(data.user)
+        console.log(userLoginSuccess)
         console.log("Login successfully");
       }
 
@@ -125,4 +137,11 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapDispactchToProps = (dispatch: Dispatch, push: any) => {
+  return {
+    navigate: (path: string) => dispatch(push(path)),
+    userLoginSuccess: (userInfo: any) => dispatch(actions.userLoginSuccess(userInfo))
+  }
+}
+
+export default connect(mapDispactchToProps)(Login)

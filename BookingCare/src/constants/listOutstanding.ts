@@ -1,5 +1,4 @@
-import { IListOutstanding } from '../components/ListLink/ItemOutstanding/index';
-
+import { IListOutstanding } from '@components/ListLink/ItemOutstanding/index';
 import doctor1 from '@assets/doctors/kieu-dinh.png';
 import doctor2 from '@assets/doctors/tra-anh-duy.jpg';
 import doctor3 from '@assets/doctors/pham-chi-lang.jpg';

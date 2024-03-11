@@ -18,7 +18,9 @@
 
     "baseUrl": ".",
     "paths": {
-      "@*": ["*"]
+      "@*": ["*"],
+      "@components/*": ["src/components/*"],
+      "@constants/*": ["src/constants/*"]
     },
 
     "esModuleInterop": true,
