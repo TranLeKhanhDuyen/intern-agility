@@ -1,15 +1,17 @@
 import { ChangeEvent, useState } from 'react';
 import './Login.css';
-import handleLoginAPi from '../../services/userService';
+import { handleLoginAPi } from '../../services/userService';
 import { Dispatch } from 'redux';
 import { userLoginSuccess } from '@src/stores/actions/userAction';
 import { connect } from 'react-redux';
-import { push } from 'connected-react-router';
+// import { push } from 'connected-react-router';
+import { Navigate, useNavigate } from 'react-router-dom';
+
 import * as actions from '../../stores/actions'
 
-interface ILoginProps {
-  userLoginSuccess: (userInfo: string) => void;
-}
+// interface ILoginProps {
+//   userLoginSuccess: (userInfo: string) => void;
+// }
 
 interface ILoginState {
   username: string;
@@ -19,13 +21,15 @@ interface ILoginState {
 }
 
 
-const Login: React.FC<ILoginProps> = (props) => {
+const Login = () => {
   const [state, setState] = useState<ILoginState>({
     username: '',
     password: '',
     isShowPassword: false,
     errMessage: '',
   });
+
+  // const navigate = useNavigate()
 
   const handleOnChangeUsername = (event: ChangeEvent<HTMLInputElement>) => {
     setState({
@@ -59,9 +63,10 @@ const Login: React.FC<ILoginProps> = (props) => {
         });
       }
       if (data && data.errCode === 0) {
-        props.userLoginSuccess(data.user)
-        console.log(userLoginSuccess)
+        // props.userLoginSuccess(data.user)
         console.log("Login successfully");
+
+        // navigate('/user-manage');
       }
 
     } catch (error: any) {
@@ -137,11 +142,13 @@ const Login: React.FC<ILoginProps> = (props) => {
   );
 };
 
-const mapDispactchToProps = (dispatch: Dispatch) => {
-  return {
-    navigate: (path: string) => dispatch(push(path)),
-    userLoginSuccess: (userInfo: any) => dispatch(actions.userLoginSuccess(userInfo))
-  }
-}
+// const mapDispactchToProps = (dispatch: Dispatch) => {
+//   return {
+//     // navigate: (path: string) => dispatch(push(path)),
+//     // userLoginSuccess: (userInfo: any) => dispatch(actions.userLoginSuccess(userInfo))
+//     userLoginSuccess: (userInfo: any) => dispatch(userLoginSuccess(userInfo)),
+//   }
+// }
 
-export default connect(mapDispactchToProps)(Login)
+// export default connect(mapDispactchToProps)(Login)
+export default Login

@@ -3,13 +3,11 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
 interface IUserManageProps {
-  // Define any props if needed
 }
 
 
 const UserManage: React.FC<IUserManageProps> = () => {
   useEffect(() => {
-    // Add any logic needed when the component mounts
   }, []);
 
 
@@ -18,6 +16,9 @@ const UserManage: React.FC<IUserManageProps> = () => {
         <div className="text-center">Manage users</div>
         <div className='users-container'>
           <div className='title'>Manage users </div>
+          <div className='table'>
+            
+          </div>
         </div>
 
       </div>

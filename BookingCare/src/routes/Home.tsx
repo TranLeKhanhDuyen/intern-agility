@@ -1,30 +1,27 @@
-import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { Dispatch } from 'redux';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
 
-interface HomeProps {
+interface IHomeProps {
   isLoggedIn: boolean;
 }
 
-const Home = ({ isLoggedIn }: HomeProps) => {
+const Home= ({ isLoggedIn }: IHomeProps) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const linkToRedirect = isLoggedIn ? '/system/user-manage' : '/login';
+    const linkToRedirect = isLoggedIn ? "/system/user-manage" : "/login";
     navigate(linkToRedirect);
-
-    // return () => linkToRedirect;
   }, [isLoggedIn, navigate]);
-  // }, [isLoggedIn, navigate]);
 
-  return <div>Redirecting...</div>;
+  return null;
 };
 
-const mapStateToProps = (state: any) => ({
-  isLoggedIn: state.admin.isLoggedIn,
-});
+const mapStateToProps = (state: any) => {
+  return {
+    isLoggedIn: state.user.isLoggedIn,
+  };
+};
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({});
+export default connect(mapStateToProps)(Home);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);

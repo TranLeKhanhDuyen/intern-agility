@@ -11,4 +11,7 @@ const handleLoginAPi = async (email: string, password: string) => {
   }
 };
 
-export default handleLoginAPi;
+const getAllUser = (id: string)=> {
+  return axios.get('/api/get-all-user', { params: { id } });
+};
+export { handleLoginAPi, getAllUser };
