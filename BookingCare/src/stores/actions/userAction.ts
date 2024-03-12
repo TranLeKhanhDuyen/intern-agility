@@ -18,3 +18,4 @@ export const processLogout = (userInfo: string) => ({
   type: ActionTypes.PROCESS_LOGOUT,
   userInfo: userInfo
 });
+ 

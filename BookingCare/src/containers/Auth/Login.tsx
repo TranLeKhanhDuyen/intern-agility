@@ -4,7 +4,7 @@ import handleLoginAPi from '../../services/userService';
 import { Dispatch } from 'redux';
 import { userLoginSuccess } from '@src/stores/actions/userAction';
 import { connect } from 'react-redux';
-// import { push } from 'connected-react-router';
+import { push } from 'connected-react-router';
 import * as actions from '../../stores/actions'
 
 interface ILoginProps {
@@ -137,7 +137,7 @@ const Login: React.FC<ILoginProps> = (props) => {
   );
 };
 
-const mapDispactchToProps = (dispatch: Dispatch, push: any) => {
+const mapDispactchToProps = (dispatch: Dispatch) => {
   return {
     navigate: (path: string) => dispatch(push(path)),
     userLoginSuccess: (userInfo: any) => dispatch(actions.userLoginSuccess(userInfo))
